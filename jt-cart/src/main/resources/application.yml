@@ -1,0 +1,45 @@
+server:
+  port: 8094
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jtdb?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+#mybatis-plush配置
+mybatis-plus:
+  type-aliases-package: com.jt.pojo
+  mapper-locations: classpath:/mybatis/mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level: 
+    com.jt.mapper: debug
+
+    
+#SpringBoot整合dubbo   
+dubbo:
+  scan:
+    basePackages: com.jt    #扫描dubbo的注解
+  application:
+    name: provider-cart     #定义服务名称
+  registry:                 #dubbo链接zookeeper
+    address: zookeeper://192.168.241.128:2181?backup=192.168.241.128:2182,192.168.241.128:2183
+  protocol:                 #协议
+    name: dubbo             #dubbo协议
+    port: 20881             #具体服务端口号 不能重复
+    
+    
+    
+    
+    
+    
+    

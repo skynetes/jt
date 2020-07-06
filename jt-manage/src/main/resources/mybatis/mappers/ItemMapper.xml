@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jt.mapper.ItemMapper">
+	<!--留着以后用  -->
+	
+	
+	<!--批量删除商品信息   Long[] ids 
+		
+		collection: 遍历集合的名称
+			参数类型 Map   collection="map中的key"
+			Array类型数组   collection="array"
+			List集合类型     collection="list"
+			
+		item: 当前遍历的变量
+	-->
+	<delete id="deleteByIds">
+		DELETE FROM tb_item WHERE id IN (
+		<foreach collection="array" item="id" separator=",">
+			#{id}
+		</foreach>
+		)
+	</delete>
+	
+	
+	
+	
+	
+</mapper>
